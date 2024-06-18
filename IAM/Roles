@@ -1,0 +1,9 @@
+##DemoS3ReadOnly 
+#Allows EC2 instances to access S3 readonly
+AmazonS3ReadOnlyAccess
+
+
+
+##EC2-IAM-Read-Only
+#Allows EC2 instances to call AWS services on your behalf.
+IAMReadOnlyAccess

@@ -1,0 +1,13 @@
+###secure login 
+ssh -i MyDemoKeyPair.pem ec2-user@Public-IP-Address
+
+ssh -i MyDemoKeyPair.pem ec2-user@Private-IP-Address
+
+###secure copy
+scp -i MyDemoKeyPair.pem MyDemoKeyPair.pem ec2-user@<Public-EC2-IP>:/home/ec2-user/
+
+###chmod
+chmod 400 MyDemoKeyPair.pem
+
+###curl 
+curl http://private-website-bucket.s3-website-<region>.amazonaws.com

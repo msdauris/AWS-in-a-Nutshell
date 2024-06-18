@@ -10,38 +10,40 @@ A quick demonstration of essential AWS resources, including public and private s
 | Team 2         | 10.3.0.0/16     | us-east-1b            | 10.3.0.0/24           | 10.3.16.0/20          |
 
 ### Security Group Rules
+<br>
+| **Team**       | **Security Group**    | **Inbound Rules**                                                                                                    | **Outbound Rules**            |
+|----------------|-----------------------|----------------------------------------------------------------------------------------------------------------------|-------------------------------|
+| All Account    | Public SG             | Allow SSH (22) from your IP                                                                                          | Allow all traffic (0.0.0.0/0) |
+|                | Private SG            | Allow SSH (22) from Public SG                                                                                        | Allow all traffic (0.0.0.0/0) |
+|                | Nat SG                | Allow HTTP (80) from VPC CIDR<br>Allow HTTPS (443) from VPC CIDR<br>Allow SSH (22) from 0.0.0.0/0<br>Allow ICMP-IPv4 | Allow all traffic (0.0.0.0/0) |
 
-| **Team**       | **Security Group**    | **Inbound Rules**                                                                                             | **Outbound Rules**            |
-|----------------|-----------------------|---------------------------------------------------------------------------------------------------------------|-------------------------------|
-| Demo Account   | Public SG             | Allow HTTP (80) from 0.0.0.0/0<br>Allow HTTPS (443) from 0.0.0.0/0<br>Allow SSH (22) from your IP             | Allow all traffic (0.0.0.0/0) |
-|                | Private SG            | Allow HTTP (80) from 10.0.0.0/16<br>Allow HTTPS (443) from 10.0.0.0/16<br>Allow SSH (22) from Public SG       | Allow all traffic (0.0.0.0/0) |
-| Team 1         | Public SG             | Allow HTTP (80) from 0.0.0.0/0<br>Allow HTTPS (443) from 0.0.0.0/0<br>Allow SSH (22) from your IP             | Allow all traffic (0.0.0.0/0) |
-|                | Private SG            | Allow HTTP (80) from 10.2.0.0/16<br>Allow HTTPS (443) from 10.2.0.0/16<br>Allow SSH (22) from Public SG       | Allow all traffic (0.0.0.0/0) |
-| Team 2         | Public SG             | Allow HTTP (80) from 0.0.0.0/0<br>Allow HTTPS (443) from 0.0.0.0/0<br>Allow SSH (22) from your IP             | Allow all traffic (0.0.0.0/0) |
-|                | Private SG            | Allow HTTP (80) from 10.3.0.0/16<br>Allow HTTPS (443) from 10.3.0.0/16<br>Allow SSH (22) from Public SG       | Allow all traffic (0.0.0.0/0) |
-
-
-
-| **Step** | **Description** | **Team 1** | **Team 2** |
-|----------|-----------------|------------|------------|
-| 1        | Login to AWS Console | Use provided credentials | Use provided credentials |
-| 2        | Create VPC | Create VPC with CIDR block as per table | Create VPC with CIDR block as per table |
-| 3        | Create Subnets | Create public subnet as per table<br>Create private subnet as per table | Create public subnet as per table<br>Create private subnet as per table |
-| 4        | Create Route Tables | Public Route Table: add route to IGW<br>Associate with public subnet | Public Route Table: add route to IGW<br>Associate with public subnet |
-| 5        | Create Internet Gateway | Attach to Public route table | Attach to Public route table |
-| 6        | Create Security Groups | Public SG: Allow HTTP, HTTPS, SSH | Public SG: Allow HTTP, HTTPS, SSH |
-| 7        | Launch EC2 Instances | Launch in public subnet, attach public SG | Launch in public subnet, attach public SG |
-| 8        | Create S3 Bucket | Name: team1-public<br>Region: Choose nearest | Name: team2-public<br>Region: Choose nearest |
-| 9        | Create Private S3 Bucket | Name: team1-private<br>Region: Choose nearest | Name: team2-private<br>Region: Choose nearest |
-| 10       | Upload Website Files to Public Bucket | Upload HTML, CSS, JS files | Upload HTML, CSS, JS files |
-| 11       | Upload Private Files to Private Bucket | Upload files meant for private access | Upload files meant for private access |
-| 12       | Set Public Access Policy for Public Bucket | Enable public access | Enable public access |
-| 13       | Set Bucket Policy for Private Bucket | Use IAM roles to restrict access | Use IAM roles to restrict access |
-| 14       | Enable Static Website Hosting on Public Bucket | Use bucket properties to enable static website | Use bucket properties to enable static website |
-| 15       | Configure Bucket Policy for Public Access | Set policy allowing public read | Set policy allowing public read |
-| 16       | Create IAM Role for Private Access | Create IAM role with S3 access | Create IAM role with S3 access |
-| 17       | Attach IAM Role to EC2 Instances | Attach created IAM role to access private bucket | Attach created IAM role to access private bucket |
-| 18       | Test Public Website Access | Access the public website URL | Access the public website URL |
-| 19       | Test Private Bucket Access via EC2 | SSH into EC2, use AWS CLI to access private files | SSH into EC2, use AWS CLI to access private files |
+<br>
+<br>
+### Step by Step Setup
+| **Step** | **Description** |  **Both Teams**  | 
+|----------|-----------------|------------------|
+| 1        | Login to AWS Console | Use provided credentials | 
+| 2        | Create VPC | Create VPC with CIDR block as per table |
+| 3        | Create Subnets | Create public subnet as per table<br>Create private subnet as per table |
+| 4        | Create Route Tables | Public Route Table: add route to IGW<br>Associate with public subnet |
+| 5        | Create Internet Gateway | Attach to Public route table |
+| 6        | Create Security Groups | Public & Private SG: See table |
+| 7        | Launch EC2 Instances | Launch 1 instance in each subnet, attach respective SG |
+| 8        | Connect to EC2 Public instance | Connect via web console and command line |
+| 9        | Connect to EC2 Private instance from Public | Connect via web console and/or command line and try to access the internet |
+| 10       | Launch a NAT Instance | Launch a NAT instance as per table and connect to Private instance via Route Table |
+| 11       | Launch a NAT Gateway  | Launch a NAT gateway and connect to Private instance via Route Table |
+| 12       | Create VPC Endpoint  | Create a VPC Endpoint<br>Type: Gateway and modify Route Table of Private |
+| 13       | Terminate Network Connections  | Terminate the NAT Instance, NAT Gateway and Release Elastic IP |
+| 14       | Create Public S3 Bucket | <br>Region: eu-west-1 |
+| 15       | Create Private S3 Bucket | <br>Region: eu-west-1|
+| 16       | Upload Website Files to Public Bucket | Upload Public.html |
+| 17       | Upload Private Files to Private Bucket | Upload Private.html |
+| 18       | Set Public Access Policy for Public Bucket | Enable public access |
+| 19       | Set Bucket Policy for Private Bucket | Use IAM roles to restrict access |
+| 20       | Enable Static Website Hosting on Public & Private Bucket | Use bucket properties to enable static website |
+| 23       | Attach IAM Role to EC2 Instances | Attach created IAM role to access private bucket |
+| 24       | Test Public Website Access | Access the public website URL of the other Team |
+| 25       | Test Private Bucket Access via EC2 | SSH into EC2 Bastion Host, use AWS CLI to access private files |
 
 

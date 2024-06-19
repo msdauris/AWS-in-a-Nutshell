@@ -5,11 +5,10 @@ A quick demonstration of essential AWS resources, including public and private s
 eu-west-1 Ireland
 
 # NAT Marketplace
-aws-marketplace/vnscubed623-20240417-aws-marketplace-nate-53Zx-de3c89e9-6794-4c6c-a933-3b7ae972f7c2 
 
 VNS3 NATe (NAT Gateway Appliance)
+Free
 by Cohesive Networks
-Delivery method
 Amazon Machine Image
 
 | **Team**       |    **Users**   |   **Users**  | **Users** | **Users** |
@@ -36,9 +35,9 @@ Amazon Machine Image
 
 ### Step by Step Setup
 
-| **Step** | **Description** | **Both Teams**  | **Emma**  |
-|----------|-----------------|-----------------|-----------|
-| 1        | Login to AWS Console | Use provided credentials | Create users for the rest of your team<br>Attempt to create an user for another team |*|
+| **Step** | **Description** | **Both Teams**  |
+|----------|-----------------|-----------------|
+| 1        | Login to AWS Console | Use provided credentials<br>Create users for the rest of your team<br>Attempt to create an user for another team |*|
 | 2        | Create VPC | Create VPC with CIDR block as per table<br> Add VPC as a bookmark on your home page |
 | 3        | Create Subnets | Create public subnet as per table<br>Create private subnet as per table<br>Keep your teams subnet with the same AZ<br>Enable Auto-assign public IP on public subnet |
 | 4        | Create Route Tables | Public Route Table: add route to IGW<br>Associate with public subnet<br>Private Route Table<br>Associate with private subnet |*|

@@ -46,19 +46,20 @@ Amazon Machine Image
 | 7        | Launch EC2 Instances | Attempt to launch a EC2 instance in different region than the one listed above<br>Launch 1 instance in each subnet, attach respective SG |
 | 8        | Connect to EC2 Public instance | Connect via web console AND command line<br>**TIP Access Key required for CLI|
 | 9        | Connect to EC2 Private instance from Public | Connect via web console and/or command line and try to access the internet! |*|
-| 10       | Launch a NAT Instance | Launch a NAT instance as per table and connect to Private instance via Route Table <br>HINT Same CIDR as your teams VPC |
+| 10       | Launch a NAT Instance | Launch a NAT instance as per table and connect to Private instance via Route Table<br>INFO Change Source / destination check must be stopped |
 | 11       | Launch a NAT Gateway  | Launch a NAT gateway and connect to Private instance via Route Table |
 | 12       | Create VPC Endpoint  | Create a VPC Endpoint<br>Type: Gateway and modify Route Table of Private |
 | 13       | Terminate Network Connections  | Terminate the NAT Instance, NAT Gateway and Release Elastic IP |
 | 14       | Create Public S3 Bucket | <br>Region: eu-west-1 |
 | 15       | Create Private S3 Bucket | <br>Region: eu-west-1|
-| 16       | Upload Website Files to Public Bucket | Upload Public.html |
-| 17       | Upload Private Files to Private Bucket | Upload Private.html |
-| 18       | Set Public Access Policy for Public Bucket | Enable public access |
-| 19       | Set Bucket Policy for Private Bucket | Use IAM roles to restrict access |
-| 20       | Enable Static Website Hosting on Public & Private Bucket | Use bucket properties to enable static website |
-| 21       | Attach IAM Role to EC2 Instances | Attach created IAM role to access private bucket |
-| 22       | Test Public Website Access | Access the public website URL of the other Team |
-| 23       | Test Private Bucket Access via EC2 | SSH into EC2 Bastion Host, use AWS CLI to access private files |
+| 16       | Enable Static Website Hosting on Public & Private Bucket | Use bucket properties to enable static website |
+| 17       | Upload Website Files to Public Bucket | Upload Public.html |
+| 18       | Upload Private Files to Private Bucket | Upload Private.html |
+| 19       | Set Public Access Policy for Public Bucket | Enable public access |
+| 20       | Set Bucket Policy for Private Bucket | Use IAM roles to restrict access |
+| 21       | Enable Static Website Hosting on Public & Private Bucket | Use bucket properties to enable static website |
+| 22       | Attach IAM Role to EC2 Instances | Attach created IAM role to access private bucket |
+| 23       | Test Public Website Access | Access the public website URL of the other Team |
+| 24       | Test Private Bucket Access via EC2 | SSH into EC2 Bastion Host, use AWS CLI to access private files |
 
 

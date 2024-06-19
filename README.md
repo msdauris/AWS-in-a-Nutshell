@@ -33,7 +33,7 @@ Amazon Machine Image
 |                | Private SG            | Allow SSH (22) from Public SG                                                                                                      | Allow all traffic (0.0.0.0/0) |
 |                | Nat SG                | Allow HTTP (80) from VPC CIDR<br>Allow HTTPS (443) from VPC CIDR<br>Allow SSH (22) from 0.0.0.0/0<br>Allow ALL ICMP-IPv4 from VPC CIDR | Allow all traffic (0.0.0.0/0) |
 
-### Step by Step Setup
+### Step by Step
 
 | **Step** | **Description** | **Both Teams**  |
 |----------|-----------------|-----------------|

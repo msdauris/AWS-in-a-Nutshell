@@ -6,7 +6,6 @@
             "Action": [
                 "iam:CreateUser",
                 "iam:DeleteUser",
-                "iam:ListUsers",
                 "iam:GetUser",
                 "iam:UpdateUser",
                 "iam:CreateLoginProfile",
@@ -14,13 +13,21 @@
                 "iam:UpdateLoginProfile",
                 "iam:AttachUserPolicy",
                 "iam:DetachUserPolicy",
-                "iam:AddUserToGroup",
-                "iam:RemoveUserFromGroup",
+                "iam:CreateAccessKey",
+                "iam:DeleteAccessKey",
+                "iam:ListAccessKeys",
+                "iam:UpdateAccessKey",
                 "iam:ListGroupsForUser",
-                "iam:ListAttachedUserPolicies",
-                "iam:GetAccountPasswordPolicy"
+                "iam:ListAttachedUserPolicies"
             ],
             "Resource": "arn:aws:iam::905418424006:user/*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:ListUsers"
+            ],
+            "Resource": "*"
         },
         {
             "Effect": "Allow",
@@ -28,7 +35,8 @@
                 "iam:ListGroups",
                 "iam:ListPolicies",
                 "iam:GetPolicy",
-                "iam:GetPolicyVersion"
+                "iam:GetPolicyVersion",
+                "iam:GetAccountPasswordPolicy"
             ],
             "Resource": "*"
         },
@@ -43,7 +51,20 @@
                 "iam:AddUserToGroup",
                 "iam:RemoveUserFromGroup"
             ],
-            "Resource": "arn:aws:iam::905418424006:group/Team1-Group"
+            "Resource": "arn:aws:iam::905418424006:group/Team1*",
+            "Condition": {
+                "StringNotEquals": {
+                    "iam:PolicyArn": "arn:aws:iam::aws:policy/AdministratorAccess"
+                }
+            }
+        },
+        {
+            "Effect": "Deny",
+            "Action": [
+                "iam:AddUserToGroup",
+                "iam:RemoveUserFromGroup"
+            ],
+            "Resource": "arn:aws:iam::905418424006:group/AdminGroup"
         }
     ]
 }

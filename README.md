@@ -11,11 +11,11 @@ Free
 by Cohesive Networks
 Amazon Machine Image
 
-| **Team**       |    **Users**   |   **Users**  | **Users** | **Users** |
-|----------------|----------------|--------------------------|-----------|
-| Demo Account   | soyred_admin   |              |           |           |
-| Team 1         | Team1-User1    | Team1-User2  |           |           |
-| Team 2         | Team1-User2    | Team2-User2  |           |           | 
+| **Team**       | **Users**      | **Users**     | **Users** | **Users** |
+|----------------|----------------|---------------|-----------|-----------|
+| Demo Account   | soyred_admin   |               |           |           |
+| Team 1         | Team1-User1    | Team1-User2   |           |           |
+| Team 2         | Team2-User1    | Team2-User2   |           |           |
 
 ### CIDR Blocks, Availability Zones, and Subnets
 

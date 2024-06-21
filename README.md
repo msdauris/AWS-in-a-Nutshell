@@ -66,6 +66,7 @@ Amazon Machine Image
 | 25       | Connect All three VPCs | **HINT** Edit Route tables<br>Try to access the private.html document of the other Team<br>What happens?  |*|
 | 26       | Quickover view of VPC Flow logs | **TIP** View VPC details  |*|
 | 27       | Clean up | Terminate your instances, gateways, release elastic ips, etc  |*|
+| 28       | Clean up |Example  |*|
 
 
 

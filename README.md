@@ -70,6 +70,9 @@ Amazon Machine Image
 | 29       | Clean up | Terminate your instances, gateways, release elastic ips, etc  |*|
 | 30       | Clean up | Terminate your instances, gateways, release elastic ips, etc  |*|
 | 45       | Clean up | Terminate your instances, gateways, release elastic ips, etc  |*|
+| 29       | Clean up | Terminate your instances, gateways, release elastic ips, etc  |*|
+| 30       | Clean up | Terminate your instances, gateways, release elastic ips, etc  |*|
+| 45       | Clean up | Terminate your instances, gateways, release elastic ips, etc  |*|
 
 
 

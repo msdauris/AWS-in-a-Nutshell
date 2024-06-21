@@ -67,6 +67,9 @@ Amazon Machine Image
 | 26       | Quickover view of VPC Flow logs | **TIP** View VPC details  |*|
 | 27       | Clean up | Terminate your instances, gateways, release elastic ips, etc  |*|
 | 28       | Clean up | Terminate your instances, gateways, release elastic ips, etc  |*|
+| 29       | Clean up | Terminate your instances, gateways, release elastic ips, etc  |*|
+| 30       | Clean up | Terminate your instances, gateways, release elastic ips, etc  |*|
+| 45       | Clean up | Terminate your instances, gateways, release elastic ips, etc  |*|
 
 
 

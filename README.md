@@ -51,7 +51,7 @@ Amazon Machine Image
 | 10       | Launch a NAT Instance | Launch a NAT instance as per table and connect to Private instance via Route Table<br>INFO Change Source / destination check must be stopped |*|
 | 11       | Launch a NAT Gateway  | Launch a NAT gateway and connect to Private instance via Route Table |
 | 12       | Create VPC Endpoint  | Create a VPC Endpoint<br>Type: Gateway and modify Route Table of Private |
-| 13       | Terminate Network Connections  | Terminate the NAT Instance, NAT Gateway and Release Elastic IP |
+| 13       | Terminate Network Connections  | Terminate the NAT Instance, NAT Gateway and Release Elastic IP<br>RUN aws s3 ls<br>**TIP** you may require DEMO IAM role|
 | 14       | Create Public S3 Bucket | <br>Region: eu-west-1 |
 | 15       | Create Private S3 Bucket | <br>Region: eu-west-1|
 | 16       | Enable Static Website Hosting on Public & Private Bucket | Use bucket properties to enable static website |
@@ -61,9 +61,9 @@ Amazon Machine Image
 | 20       | Set Bucket Policy for Private Bucket | Use IAM roles to restrict access |*|
 | 21       | Enable Static Website Hosting on Public & Private Bucket | Use bucket properties to enable static website |
 | 22       | Attach IAM Role to EC2 Instances | Attach created IAM role to access private bucket<br>**TIP**Create role for EC2 with read only S3 access |
-| 23       | Test Public Website Access | Access the public website URL of the other Team |
-| 24       | Test Private Bucket Access via EC2 | SSH into EC2 Bastion Host, use AWS CLI to access private files |
-| 25       | Connect All three VPCs | **HINT** Edit Route tables<br>Try to access the private.html document of the other Team<br>What happens?  |*|
+| 23       | Test Public Website Access | Access the public website URL of the other Team<br>**TIP** check Demo public bucket for policies  |
+| 24       | Test Private Bucket Access via EC2 | SSH into EC2 Bastion Host, use AWS CLI to access private files<br>**TIP** check Demo private bucket for policies |
+| 25       | Connect All three VPCs | **HINT** Peering connection<br>Edit Route tables<br>Try to access the private.html document of the other Team<br>What happens?  |*|
 | 26       | Quickover view of VPC Flow logs | **TIP** View VPC details  |*|
 | 27       | Clean up | Terminate your instances, gateways, release elastic ips, etc  |*|
 

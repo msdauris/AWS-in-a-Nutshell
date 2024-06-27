@@ -50,7 +50,7 @@ Amazon Machine Image
 | 9        | Connect to EC2 Private instance from Public | Connect via web console and/or command line and try to access the internet! |*|
 | 10       | Launch a NAT Instance | Launch a NAT instance as per table and connect to Private instance via Route Table<br>INFO Change Source / destination check must be stopped |*|
 | 11       | Launch a NAT Gateway  | Launch a NAT gateway and connect to Private instance via Route Table |
-| 12       | Create VPC Endpoint  | Create a VPC Endpoint<br>Type: Gateway and modify Route Table of Private e.g. VPC and add to Public<br> Amend local region aws s3 ls --region eu-west-1 |
+| 12       | Create VPC Endpoint  | Create a VPC Endpoint<br>Type: Gateway and modify Route Table of Private e.g. VPC and add to PRIVATE!!<br> Amend local region aws s3 ls --region eu-west-1 |
 | 13       | Terminate Network Connections  | Terminate the NAT Instance, NAT Gateway and Release Elastic IP<br>RUN aws s3 ls<br>**TIP** you may require DEMO IAM role|
 | 14       | Create Public S3 Bucket | <br>Region: eu-west-1 |
 | 15       | Create Private S3 Bucket | <br>Region: eu-west-1|

@@ -3,7 +3,6 @@ A quick demonstration of essential AWS resources, including public and private s
 
 #AWS Account
 https://aws-onboarding-nc.signin.aws.amazon.com/console
-905418424006
 
 # AWS Region
 eu-west-1 Ireland

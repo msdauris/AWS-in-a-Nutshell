@@ -51,7 +51,7 @@ Amazon Machine Image
 | 7        | Launch EC2 Instances | Attempt to launch a EC2 instance in different region than the one listed above<br>Launch 1 instance in each subnet, attach respective SG |
 | 8        | Connect to EC2 Public instance | Connect via web console AND command line<br>**TIP** Access Key required for CLI|*|
 | 9        | Connect to EC2 Private instance from Public | Connect via web console and/or command line and try to access the internet! |*|
-| 10       | Launch a NAT Instance in public subnet | Launch a NAT instance as per table and connect to Private instance via Route Table<br>INFO Change Source / destination check must be stopped |*|
+| 10       | Launch a NAT Instance in public subnet | Launch a NAT instance as per table and connect to Private instance via Route Table<br>INFO Change Source / destination check must be stopped |*|>**TIP** USE VNS3 NATe (NAT Gateway Appliance)
 | 11       | Launch a NAT Gateway  | Launch a NAT gateway and connect to Private instance via Route Table |
 | 12       | Create VPC Endpoint  | Create a VPC Endpoint<br>Type: Gateway and modify Route Table of Private e.g. VPC and add to PRIVATE!!<br> Amend local region aws s3 ls --region eu-west-1<br>RUN aws s3 ls<br>**TIP** you may require DEMO IAM role|
 | 13       | Terminate Network Connections  | Terminate the NAT Instance, NAT Gateway and Release Elastic IP|

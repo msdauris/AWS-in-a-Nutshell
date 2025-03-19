@@ -13,6 +13,9 @@ chmod 400 MyDemoKeyPair.pem
 curl http://private-website-bucket.s3-website-<region>.amazonaws.com
 curl <Private-EC2-IP>
 
+##check ip
+curl ifconfig.me
+
 ###aws
 aws configure
 $ aws configure

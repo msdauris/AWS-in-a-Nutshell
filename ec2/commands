@@ -1,6 +1,9 @@
 ###secure login 
 ssh -i MyDemoKeyPair.pem ec2-user@Public-IP-Address
 
+#### troubleshoot ssh###
+ssh -vvv -i your-key.pem ec2-user@your-instance-ip  
+
 ssh -i MyDemoKeyPair.pem ec2-user@Private-IP-Address
 
 ###secure copy

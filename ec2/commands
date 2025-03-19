@@ -18,7 +18,7 @@ aws configure
 $ aws configure
 AWS Access Key ID [None]: AKIAIOSFODNN7EXAMPLE
 AWS Secret Access Key [None]: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
-Default region name [None]: us-west-1
+Default region name [None]: eu-west-1
 Default output format [None]: json
 
 ###list s3 buckets
@@ -27,25 +27,25 @@ aws s3 ls --region eu-west-1
 
 ###Start an EC2 instance:
 aws ec2 start-instances --instance-ids <instance-id>
-aws ec2 start-instances --instance-ids i-1234567890abcdef --region us-west-2
+aws ec2 start-instances --instance-ids i-1234567890abcdef --region eu-west-1
 
 ###Stop an EC2 instance:
 aws ec2 stop-instances --instance-ids <instance-id>
-aws ec2 stop-instances --instance-ids i-1234567890abcdef --region eu-central-1
+aws ec2 stop-instances --instance-ids i-1234567890abcdef --region eu-west-1
 
 ###Reboot an EC2 instance:
 aws ec2 reboot-instances --instance-ids <instance-id>
-aws ec2 reboot-instances --instance-ids i-1234567890abcdef --region us-west-2
+aws ec2 reboot-instances --instance-ids i-1234567890abcdef --region eu-west-1
 
 ###Terminate an EC2 instance:
 aws ec2 terminate-instances --instance-ids <instance-id>
 
 ###Get the status of an EC2 instance:
 aws ec2 describe-instance-status --instance-ids <instance-id>
-aws ec2 describe-instances --filters "Name=instance-state-name,Values=running" --region us-west-2
+aws ec2 describe-instances --filters "Name=instance-state-name,Values=running" --region eu-west-1
 
 ###List all running EC2 instances in the ap-southeast-1 region
-aws ec2 describe-instances --filters Name=instance-state-name,Values=running --region ap-southeast-1
+aws ec2 describe-instances --filters Name=instance-state-name,Values=running --region eu-west-1
 
 ###Replace <instance-id> with the actual ID of the instance you want to check the status of.
 

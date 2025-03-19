@@ -62,13 +62,12 @@ Amazon Machine Image
 | 18       | Upload Private Files to Private Bucket | Upload Private-team1.html<br>Upload Private-team2.html |
 | 19       | Set Public Access Policy for Public Bucket | Enable public access |
 | 20       | Set Bucket Policy for Private Bucket | Use IAM roles to restrict access |*|
-| 21       | Enable Static Website Hosting on Public & Private Bucket | Use bucket properties to enable static website |
-| 22       | Attach IAM Role to EC2 Instances | Attach created IAM role to access private bucket<br>**TIP**Create role for EC2 with read only S3 access |
-| 23       | Test Public Website Access | Access the public website URL of the other Team<br>**TIP** check Demo public bucket for policies  |
-| 24       | Test Private Bucket Access via EC2 | SSH into EC2 Bastion Host, use AWS CLI to access private files<br>**TIP** check Demo private bucket for policies |
-| 25       | Connect All three VPCs | **HINT** Peering connection<br>Edit Route tables<br>Try to access the private.html document of the other Team<br>What happens?  |*|
-| 26       | Quickover view of VPC Flow logs | **TIP** View VPC details  |*|
-| 27       | Clean up | Terminate your instances, gateways, release elastic ips, etc  |*|
+| 21       | Attach IAM Role to EC2 Instances | Attach created IAM role to access private bucket<br>**TIP**Create role for EC2 with read only S3 access |
+| 22       | Test Public Website Access | Access the public website URL of the other Team<br>**TIP** check Demo public bucket for policies  |
+| 23       | Test Private Bucket Access via EC2 | SSH into EC2 Bastion Host, use AWS CLI to access private files<br>**TIP** check Demo private bucket for policies |
+| 24       | Connect All three VPCs | **HINT** Peering connection<br>Edit Route tables<br>Try to access the private.html document of the other Team<br>What happens?  |*|
+| 25       | Quickover view of VPC Flow logs | **TIP** View VPC details  |*|
+| 26       | Clean up | Terminate your instances, gateways, release elastic ips, etc  |*|
 
 
 

@@ -36,7 +36,7 @@ Amazon Machine Image
 |----------------|-----------------------|----------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|
 | All Accounts   | Public SG             | Allow SSH (22) from your IP (Restricts EC2 Connect) & Allow HTTP 80 from  (0.0.0.0/0)                                                  | Allow all traffic (0.0.0.0/0) |
 |                | Private SG            | Allow SSH (22) from Public SG/Private IP of Public aka Bastion Host                                                                    | Allow all traffic (0.0.0.0/0) |
-|                | Nat SG                | Allow HTTP (80) from VPC CIDR<br>Allow HTTPS (443) from VPC CIDR<br>Allow SSH (22) from 0.0.0.0/0<br>Allow ALL ICMP-IPv4 from VPC CIDR | Allow all traffic (0.0.0.0/0) |
+|                | Nat SG                | Allow HTTP (80) from VPC CIDR<br>Allow HTTPS (443) from VPC CIDR<br>Allow SSH (22) from VPC CIDR<br>Allow ALL ICMP-IPv4 from 0.0.0.0/0 | Allow all traffic (0.0.0.0/0) |
 
 ### Step by Step
 

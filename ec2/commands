@@ -25,6 +25,9 @@ Default output format [None]: json
 aws s3 ls
 aws s3 ls --region eu-west-1
 
+####check ip address:
+aws ec2 describe-instances --instance-ids i-xxxxxxxxxxxxxxxxx --query "Reservations[*].Instances[*].PublicIpAddress"
+
 ###Start an EC2 instance:
 aws ec2 start-instances --instance-ids <instance-id>
 aws ec2 start-instances --instance-ids i-1234567890abcdef --region eu-west-1

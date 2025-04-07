@@ -1,4 +1,4 @@
-# AWS-in-a-Nutshell
+# AWS-in-a-Nutshell V2
 A quick demonstration of essential AWS resources, including public and private static websites on S3, NAT instances, and VPC configurations.
 
 #AWS Account
@@ -40,33 +40,214 @@ Amazon Machine Image
 
 ### Step by Step
 
-| **Step** | **Description** | **Both Teams**  |
-|----------|-----------------|-----------------|
-| 1        | Login to AWS Console | Use provided credentials<br>Create users for the rest of your team<br>Attempt to create an user for another team |*|
-| 2        | Create VPC | Create VPC with CIDR block as per table<br> Add VPC as a bookmark on your home page |
-| 3        | Create Subnets | Create public subnet as per table<br>Create private subnet as per table<br>Keep your teams subnet with the same AZ<br>Enable Auto-assign public IP on public subnet |
-| 4        | Create Route Tables | Public Route Table: add route to IGW<br>Associate with public subnet<br>Private Route Table<br>Associate with private subnet |*|
-| 5        | Create Internet Gateway | Attach to Public route table<br>**HINT** you'll need to edit the Route|*|
-| 6        | Create Security Groups | Public & Private SG: See table<br>**TIP** you can create these sg groups at same time as launching EC2  |*|
-| 7        | Launch EC2 Instances | Attempt to launch a EC2 instance in different region than the one listed above<br>Launch 1 instance in each subnet, attach respective SG |
-| 8        | Connect to EC2 Public instance | Connect via web console AND command line<br>**TIP** Access Key required for CLI|*|
-| 9        | Connect to EC2 Private instance from Public | Connect via web console and/or command line and try to access the internet! |*|
-| 10       | Launch a NAT Instance in public subnet | Launch a NAT instance as per table and connect to Private instance via Route Table<br>INFO Change Source / destination check must be stopped |*|>**TIP** USE VNS3 NATe (NAT Gateway Appliance)
-| 11       | Launch a NAT Gateway  | Launch a NAT gateway and connect to Private instance via Route Table |
-| 12       | Create VPC Endpoint  | Create a VPC Endpoint<br>Type: Gateway and add to PRIVATE subnet!!<br> Amend local region '''aws s3 ls --region eu-west-1'''<br>RUN '''aws s3 ls'''<br>**TIP** you may require DEMO IAM role or try aws configure with your access key ;)|
-| 13       | Terminate Network Connections  | Terminate the NAT Instance, NAT Gateway and Release Elastic IP|
-| 14       | Create Public S3 Bucket | <br>Region: eu-west-1 |
-| 15       | Create Private S3 Bucket | <br>Region: eu-west-1|
-| 16       | Enable Static Website Hosting on Public & Private Bucket | Use bucket properties to enable static website |
-| 17       | Upload Website Files to Public Bucket | Upload Public.html |
-| 18       | Upload Private Files to Private Bucket | Upload Private-team1.html<br>Upload Private-team2.html |
-| 19       | Set Public Access Policy for Public Bucket | Enable public access but set policy - see demo |
-| 20       | Set Bucket Policy for Private Bucket | Enable public access but set policy - see demo |*|
-| 21       | Test Public Website Access | Access the public website URL of the other Team<br>**TIP** check Demo public bucket for policies  |
-| 22       | Test Private Bucket Access via EC2 | SSH into EC2 Bastion Host, use AWS CLI to access private files<br>**TIP** check Demo private bucket for policies |
-| 23       | Connect All three VPCs | **HINT** Peering connection<br>Edit Route tables<br>Try to access the private.html document of the other Team<br>What happens?  |*|
-| 24       | Quickover view of VPC Flow logs | **TIP** View VPC details  |*|
-| 25       | Clean up | Terminate your instances, gateways, release elastic ips, etc  |*|
+# 🧪 AWS Hands-On Workshop Guide
+
+A step-by-step collection of hands-on tasks for participants across all workshop sessions.
+
+---
+
+## 1️⃣ **Intro + Console Customization (15–20 mins)**
+
+### 🎯 Goals:
+- Familiarize participants with AWS Console
+- Customize UI and use bookmarks
+
+### ✅ Tasks:
+- Change console theme (dark/light)
+- Add bookmarks for: IAM, EC2, S3, CloudWatch
+- Explore:
+  - Service search
+  - Region selection dropdown
+
+---
+
+## 2️⃣ **IAM & Permissions (45–60 mins)**
+
+### 🎯 Goals:
+- Understand users, roles, and policies
+- Practice least privilege
+- Simulate access scenarios
+
+### ✅ Tasks:
+- From their **non-admin user**, create:
+  - A new IAM user
+  - A custom IAM role
+  - A policy allowing **read-only S3 and EC2** actions
+- Use **IAM Policy Simulator** to:
+  - Test access to list S3 buckets
+  - Explore deny vs allow behaviors
+- (Optional) Attempt actions with insufficient permissions and fix using policy updates
+
+📝 *Tip:* Pre-create an “elevated” role participants can assume when stuck.
+
+---
+
+## 3️⃣ **EC2 + EBS + Web Server (60–75 mins)**
+
+### 🎯 Goals:
+- Launch and connect to EC2
+- Set up a basic web server
+- Attach and use EBS volumes
+
+### ✅ Tasks:
+- Launch EC2 (Amazon Linux 2, t2.micro)
+- Create or import SSH key pair
+- Connect to instance via SSH
+- Install web server:
+
+```bash
+sudo yum update -y
+sudo yum install httpd -y
+sudo systemctl start httpd
+sudo systemctl enable httpd
+```
+- Attach EBS volume via console
+- Format and mount the volume:
+
+```bash
+sudo mkfs -t xfs /dev/xvdf
+sudo mkdir /data
+sudo mount /dev/xvdf /data
+```
+---
+
+## 4️⃣ **S3 Buckets + Permissions (30 mins)**
+
+### 🎯 Goals:
+- Understand S3 bucket structure and access control
+- Upload and retrieve files
+
+### ✅ Tasks:
+- Create a new S3 bucket (with a unique name)
+- Upload a sample file (e.g., image, CSV, or text)
+- Adjust permissions to:
+- Allow public read (optional)
+- Use bucket policies or object ACLs
+- Access uploaded file via public URL (if permissions allow)
+- Explore versioning, lifecycle rules, and storage classes
+
+📝 Tip: Compare Standard vs Infrequent Access or Glacier classes.
+
+---
+
+## 5️⃣ **ELB + Auto Scaling Group (60 mins)**
+
+### 🎯 Goals:
+- Balance traffic and scale EC2 instances automatically
+
+### ✅ Tasks:
+- Create a Launch Template (with User Data to install Apache):
+```bash
+#!/bin/bash
+yum update -y
+yum install -y httpd
+systemctl start httpd
+echo "<h1>Server: $(hostname)</h1>" > /var/www/html/index.html
+```
+Create an Auto Scaling Group (ASG):
+- Use the Launch Template
+- Attach to 2 public subnets
+- Set scaling policies (manual or CPU-based)
+
+Create an Application Load Balancer (ALB):
+- Internet-facing
+- Target group pointing to ASG
+
+Test Load Balancer in browser:
+- Refresh to see different instance hostnames
+- Kill one instance → watch ASG recover
+
+---
+## 6️⃣ **RDS (45 mins)**
+
+### 🎯 Goals:
+- Launch a managed database and connect to it securely
+
+### ✅ Tasks:
+Launch an RDS (MySQL or Postgres) instance:
+- Use free-tier options
+- Public access (yes) for easy connection
+- Ensure security group allows port 3306 (MySQL) or 5432 (Postgres)
+
+Connect from EC2 or a SQL client:
+```sql
+mysql -h <endpoint> -u admin -p
+```
+Run sample SQL:
+```sql
+CREATE DATABASE demo;
+USE demo;
+CREATE TABLE users (id INT, name VARCHAR(50));
+INSERT INTO users VALUES (1, 'Alice'), (2, 'Bob');
+SELECT * FROM users;
+```
+📝 Tip: Remind participants not to store real credentials/data.
+
+## 7️⃣ **Athena + S3 Querying (30–45 mins)**
+
+### 🎯 Goals:
+- Use Athena to query CSV/JSON in S3 without provisioning servers
+
+### ✅ Tasks:
+Upload a sample CSV to S3:
+- Example: user_id,name,role
+
+Open AWS Glue Data Catalog:
+- Create a database (e.g., workshop_data)
+- Define a table using crawler or manually (CSV format)
+
+Use Athena:
+- Point to the Glue table
+- Run sample queries:
+
+```sql
+SELECT * FROM workshop_data.users LIMIT 10;
+```
+📝 Tip: Show them how Athena charges per query scanned (watch the data size!).
 
 
+---
+## 🔚 **Wrap-Up (15–20 mins)**
 
+✅ Tasks:
+Recap key services used:
+- IAM, EC2, EBS, S3, ELB, ASG, RDS, Athena
+
+Share:
+- Challenges faced
+- Cool things learned
+
+Optional:
+- Issue certificates
+- Invite feedback via Google Form or Jamboard
+- Discuss next steps (certification paths, sandbox ideas)
+---
+
+---🧾 Optional Facilitator Setup
+🔧 CloudTrail Setup (for auditing & troubleshooting)
+Navigate to CloudTrail → Trails → Create Trail
+Name: workshop-trail
+- Select or create an S3 bucket for log delivery
+- Enable for all regions
+- Enable Management events (read & write)
+- (Optional) Turn on Insights to track unusual activity
+- Click Create – logging begins automatically
+
+📝 Why? Helps troubleshoot issues (e.g., failed permissions) and gives visibility into student activity.
+---ssh -T git@github.com
+
+
+---✅ Final Checklist (Participant Self-Eval)
+- [ ] Customized AWS Console (theme + bookmarks)
+- [ ] Created IAM user, role, and policy
+- [ ] Simulated access with IAM Policy Simulator
+- [ ] Launched EC2 instance and connected via SSH
+- [ ] Installed web server (Apache/Nginx)
+- [ ] Attached EBS volume and mounted it
+- [ ] Created and managed S3 bucket
+- [ ] Used S3 permissions and tested access
+- [ ] Set up ELB + Auto Scaling Group
+- [ ] Verified load balancing and scaling behavior
+- [ ] Deployed RDS and connected to it
+- [ ] Ran SQL queries on RDS
+- [ ] Queried structured S3 data using Athena

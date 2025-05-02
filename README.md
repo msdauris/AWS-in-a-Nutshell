@@ -44,9 +44,9 @@ Amazon Machine Image
 
 A step-by-step collection of hands-on tasks for participants across all workshop sessions.
 
-| **Step** | **Description** | **Both Teams**  |
-|----------|-----------------|-----------------|
-| 1        | Login to AWS Console | Change console theme (dark/light)<br>Add bookmarks for: IAM, EC2, S3, CloudWatch<br>Explore service search, region selection<br>|*|*|
+| **#** | **step** | **description**  |**details**|
+|----------|-----------------|-----------------|------|
+| 1        | Login to AWS Console | Change console theme (dark/light)<br>Add bookmarks for: IAM, EC2, S3, CloudWatch<br>Explore service search, region selection<br>|*|
 | 2        | **Create Two Users**: Create two users within the appropriate IAM demo groups: [Developers Group] [QA Group] | Examine the policies attached to each group.<br>Simulate each user's access to various resources using the IAM Policy Simulator.<> |*|
 | 3        | TEXT | TEXT |*|
 | 4        | TEXT | TEXT |*|
